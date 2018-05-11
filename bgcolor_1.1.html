@@ -1,0 +1,383 @@
+<html>
+	
+	<head>
+	
+	<title> Background Change Script </title>
+		<style>
+		
+			body
+				{
+				background-color:silver;
+				font-family:"Open Sans", "Segoe UI", "Verdana", "Tahoma", "Arial", Sans-Serif;
+				transition: all 2s ease;
+				}
+				
+			div
+				{
+				opacity:0.8;
+				transition: all 0.25s ease;
+				}
+				
+			div:hover
+				{
+				opacity:1;
+				}
+				
+			div h3
+				{
+				font-weight:normal;
+				font-size:20px;
+				padding-top:10px;
+				opacity:1;
+				}
+			
+			div p
+				{
+				font-size:13px;
+				}
+				
+			div h3, p
+				{
+				padding-left:10px;
+				}
+				
+			#options
+				{
+				background-color:white;
+				height:520px;
+				width:350px;
+				overflow:hidden;
+				}
+			
+			#options *
+			
+				{
+				padding-left:10px;
+				}
+		
+			#options #button
+				
+				{
+				width:320px;
+				height:50px;
+				}
+				
+			#status
+			
+				{
+				font-weight:bold;
+				transition: all 0.5s ease;
+				}
+		
+				
+			#gradient_option
+				{
+				cursor:hand;
+				background-color:black;
+				color:white;
+				transition: all 0.4s;
+				width:50%;
+				}
+				
+			#gradient_option:hover
+				{
+				background-color:#008CFF;
+				}
+				
+			#about
+				{
+				cursor:hand;
+				background-color:black;
+				color:white;
+				transition: all 0.4s;
+				width:50%;
+				}
+				
+			#about:hover
+				{
+				background-color:#008CFF;
+				}
+				
+			#code
+				{
+				float:right;
+				height:151px; 
+				width:350px; 
+				background-color:white; 
+				overflow:hidden;
+				}
+			
+			#code strong
+			
+				{
+				padding:10px;
+				}
+			
+			#code textarea
+				
+				{
+				height:80px;
+				width:290px;
+				font-family:"Consolas", "Courier New", Monospace;
+				font-size:13px;
+				}
+				
+			#homepage
+				
+				{
+				height:80px;
+				width:350px;
+				background-color:skyblue;
+				opacity:0.7;
+				float:right;
+				margin-top:10px;
+				clear:both;
+				color:black;
+				transition: all 0.5s ease;
+				}
+			
+			#homepage:hover
+			
+				{
+				opacity:1;
+				background-color:white;
+				box-shadow: 0px 0px 80px 2px skyblue;
+				}
+	
+		</style>
+		
+		<script>
+		
+		
+			function change_bgcolor_red()
+			{
+			
+			document.body.style.background="red";
+			document.getElementById("status").innerHTML = "Background Color is Red";
+			document.getElementById("generated").innerHTML = "background-color:red";
+			}
+			
+			function change_bgcolor_blue()
+			{
+			
+			document.body.style.background="blue";
+			document.getElementById("status").innerHTML = "Background Color is Blue";
+			document.getElementById("generated").innerHTML = "background-color:blue";
+			}
+			
+			function change_bgcolor_green()
+			{
+			
+			document.body.style.background="green";
+			document.getElementById("status").innerHTML = "Background Color is Green";
+			document.getElementById("generated").innerHTML = "background-color:green";
+			}
+			
+			function change_bgcolor_gray()
+			{
+			
+			document.body.style.background="gray";
+			document.getElementById("status").innerHTML = "Background Color is Gray";
+			document.getElementById("generated").innerHTML = "background-color:gray";
+			}
+			
+			function change_bgcolor_pink()
+			{
+			
+			document.body.style.background="pink";
+			document.getElementById("status").innerHTML = "Background Color is Pink";
+			document.getElementById("generated").innerHTML = "background-color:pink";
+			}
+			
+			function change_bgcolor_cyan()
+			{
+			
+			document.body.style.background="cyan";
+			document.getElementById("status").innerHTML = "Background Color is Cyan";
+			document.getElementById("generated").innerHTML = "background-color:cyan";
+			}
+			
+			function change_bgcolor_magenta()
+			{
+			
+			document.body.style.background="magenta";
+			document.getElementById("status").innerHTML = "Background Color is Magenta";
+			document.getElementById("generated").innerHTML = "background-color:magenta";
+			}
+			
+			function change_bgcolor_yellow()
+			{
+			
+			document.body.style.background="yellow";
+			document.getElementById("status").innerHTML = "Background Color is Yellow";
+			document.getElementById("generated").innerHTML = "background-color:yellow";
+			}
+			
+			function change_bgcolor_black()
+			{
+			
+			document.body.style.background="black";
+			document.getElementById("status").innerHTML = "Background Color is Black";
+			document.getElementById("generated").innerHTML = "background-color:black";
+			}
+			
+			function change_bgcolor_violet()
+			{
+			
+			document.body.style.background="violet";
+			document.getElementById("status").innerHTML = "Background Color is Violet";
+			document.getElementById("generated").innerHTML = "background-color:violet";
+			}
+			
+			function change_bgcolor_custom()
+			{
+			
+			var custom = document.getElementById("custom").value;
+			document.body.style.background=custom;
+			document.getElementById("status").innerHTML = "Background Color is "+ custom + ".";
+			document.getElementById("generated").innerHTML = "background-color:"+custom;
+			}
+			
+			function change_gradient()
+			{
+			var color1 = document.getElementById("color1").value;
+			var color2 = document.getElementById("color2").value;
+			var gradient = document.getElementById("gradient").value;
+			document.body.style.background=""+gradient+"-gradient("+color1+", "+color2+")";
+			document.getElementById("generated").innerHTML = "background: "+gradient+"-gradient("+color1+", "+color2+")";
+			}
+			
+			function show_gradient()
+			{
+			document.getElementById("options").style.height="878px";
+			document.getElementById("gradient_option").style.opacity="0.2";
+			document.getElementById("gradient_option").style.width="1px";
+			}
+			
+			function hide_gradient()
+			{
+			document.getElementById("options").style.height="520px";
+			document.getElementById("gradient_option").style.opacity="1";
+			document.getElementById("gradient_option").style.width="50%";
+			}
+			
+			function show_about()
+			{
+			document.getElementById("head").style.height="360px";
+			document.getElementById("about").style.width="0px";
+			}
+			
+			function hide_about()
+			{
+			document.getElementById("head").style.height="151px";
+			document.getElementById("about").style.width="50%";
+			}
+		</script>
+		
+	</head>
+	
+	<body>
+	
+	<div id="head" style="height:151px; width:350px; background-color:white; overflow:hidden;">
+	
+	<h3>Change the background color </h3>
+	
+	<hr>
+	
+	<p> Select the color to change the background. </p>
+	<p id="about" onclick="show_about();"> About.. </p>
+	
+	<h4> About this page (v1.1 - May 18, 2014)</h4> <hr>
+	
+	<font size="2">Created by <b> Roshan </b><p>
+	Uses HTML, HTML5 Color Input type, CSS, CSS3 Transitions and Javascript.<br>
+	<i> For source code, right click and select 'View Source' </i></font>
+	<br><br>
+	<p id="about" onclick="hide_about();"> Hide </p>
+	
+	</div>
+	
+	<div id="code">
+	
+		<br>
+		<strong> CSS Code for the Background: </strong><p>
+		<textarea id="generated" readonly> Not yet generated...</textarea>
+		
+	</div>
+	
+<a href="index.html">	<div id="homepage">
+	
+		<br>
+		<strong> Go back to Home Page </strong><p>
+		<code> Click this box to return to home </code>
+		
+	</div></a>
+	<br>
+	
+
+	
+	<div id="options"> <br>
+	<strong> Choose a color </strong><p>
+	
+		<input type = "radio" name = "color" value = "red" onchange="change_bgcolor_red();">	Red <p>
+		
+		<input type = "radio" name = "color" value = "blue" onchange="change_bgcolor_blue();"> Blue <p>
+		
+		<input type = "radio" name = "color" value = "green" onchange="change_bgcolor_green();">	Green <p>
+		
+		<input type = "radio" name = "color" value = "gray" onchange="change_bgcolor_gray()">	Gray <p>
+		
+		<input type = "radio" name = "color" value = "Pink" onchange="change_bgcolor_pink()">	Pink <p>
+		
+		<input type = "radio" name = "color" value = "Cyan" onchange="change_bgcolor_cyan()">	Cyan <p>
+		
+		<input type = "radio" name = "color" value = "magenta" onchange="change_bgcolor_magenta()">	Magenta <p>
+		
+		<input type = "radio" name = "color" value = "yellow" onchange="change_bgcolor_yellow()">	Yellow <p>
+		
+		<input type = "radio" name = "color" value = "black" onchange="change_bgcolor_black()">	Black <p>
+		
+		<input type = "radio" name = "color" value = "violet" onchange="change_bgcolor_violet()">	Violet <p>
+		
+		<input type = "radio" name = "color" onchange="change_bgcolor_custom()"> User Defined	<input type="color" id="custom">  <font size="1"><b>(Define your custom color first) </b></font><p>
+		
+		<p id="status"></p><br>
+		<p id="gradient_option" onclick="show_gradient();"> Gradients? </p>
+		<br><br>
+		<strong> Simple CSS3 Gradients </strong>(Experimental)<p>
+		
+		<form>
+		
+		<p>	Choose Stop Color 1 :  <input type="color" id="color1" onchange="gradient_preview();"> </p>
+	
+		<p> Choose Stop Color 2 :  <input type="color" id="color2" onchange="gradient_preview();"> </p>
+	
+		<p> Choose Gradient Style :  	<select id="gradient" onchange="gradient_preview();"> 
+		
+										<option> Linear </option> 
+										<option> Radial </option> 
+	
+										</select>
+	
+	<div style="height:90px; width:90px; border: 1px dotted black;" id="preview"> Gradient Preview</div> <p>
+	
+	<script>
+	
+	function gradient_preview()
+	{
+	var color1 = document.getElementById("color1").value;
+	var color2 = document.getElementById("color2").value;
+	var gradient = document.getElementById("gradient").value;
+	document.getElementById("preview").style.background=""+gradient+"-gradient("+color1+", "+color2+")";
+	}
+	</script>
+	
+	<input type="button" value="Set Gradient Background" onclick="change_gradient();">
+	
+		</form>
+	
+	<p id="gradient_option" onclick="hide_gradient();"> Hide Gradients </p>
+	</div>
+	</body>
+	
+	</html>
