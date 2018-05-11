@@ -1,0 +1,387 @@
+<!--
+
+****** BMI CALCULATOR BY ROSHAN ******
+    Last Updated 10:09 PM 6/4/2014
+	   
+	   
+	   
+	   The following is the source code of the BMI CALCULATOR application,
+	   the source code is written by Roshan, with the jQuery script as exception.
+	   
+	   *******************************
+	   
+	   You can modify and use my code in any way you like.
+	   This code was made by me for my own practice, and so
+	   I'll be glad if it helps your learning too!
+	   
+	   
+	   ABOUT THE CSS:
+	   
+			The CSS also is written by me. It was then
+			modified by a free online tool - which adds
+			vendor prefixes to the newer CSS properties.
+			
+			The font-kit was generated also by using
+			free online tool.
+			
+			The fonts and icons used are free too!
+	   
+
+
+	Enjoy!!!!
+
+
+-->
+
+<html>
+
+	<head>
+	
+		<title>BMI Calculator</title>
+	
+		<link rel="stylesheet" href="bmi_resources/font/stylesheet.css">
+		
+		<link rel="stylesheet" href="bmi_style1_valid.css">
+	
+		<style>
+		
+		<!-- for font smoothing (marked as important) -->
+		
+		font-smooth:always;
+		
+		</style>
+		
+		
+		
+		<script src="jquery.js"></script>
+
+	<script> // This is JQuery Script 
+	$(function() {
+	  $('a[href*=#]:not([href=#])').click(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+
+	      var target = $(this.hash);
+	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	      if (target.length) {
+	        $('html,body').animate({
+	          scrollTop: target.offset().top
+	        }, 1000);
+	        return false;
+	      }
+	    }
+	  });
+	});
+	</script>
+		
+		<script>
+		
+		
+		function show_about()
+		{
+		document.getElementById("head").style.height="500px";
+		}
+		
+		
+		function hide_about()
+		{
+		document.getElementById("head").style.height="200px";
+		document.getElementById("head").style.overflow="hidden";
+		}
+	
+		function calculate()
+		{
+		
+		
+		// First Validating, checking for blank values
+		
+		var user_name = document.getElementById("name").value;
+		
+			
+		
+		
+		var w = document.getElementById("w").value;
+		var h = document.getElementById("h").value;
+		var weight_valid = 0;
+		var height_valid = 0;
+		
+			if (w == null || w == "") {
+				document.getElementById("w").setAttribute("filled", "no");
+				weight_valid = 0;
+						} else {weight_valid = 1; document.getElementById("w").removeAttribute("filled");};
+			
+			if (h == null || h == "") {
+				document.getElementById("h").setAttribute("filled", "no");
+				height_valid = 0;
+						} else { height_valid = 1; document.getElementById("h").removeAttribute("filled");};
+						
+			if (weight_valid == 1 && height_valid == 1) {
+				
+				
+				
+				// Height and Weight are already defined above 
+			
+				var height_unit = document.getElementById("height_unit").value;
+				var weight_unit = document.getElementById("weight_unit").value;
+				
+				var h_in_m;				
+				var	w_in_kg;
+				
+				// CONVERSIONS TO METER AND KG ACCORDING TO UNIT OF USER INPUT
+				if (height_unit == "m") {
+					h_in_m = h;
+					}
+				else if (height_unit == "cm") {
+					h_in_m = (h/100);
+					}
+				else if (height_unit == "ft") {
+					h_in_m = (h/3.28);
+					}
+				
+				if (weight_unit == "kg") {
+					w_in_kg = w;
+					}
+				else if (weight_unit == "lb") {
+					w_in_kg = (w / 2.2);
+					}
+				
+				// AFTER CONVERSIONS, GETTING BMI
+				
+				var bmi = (w_in_kg/(h_in_m * h_in_m));
+				var round_bmi = Math.round(bmi);
+				
+				// COMPARING WITH VALUES TO GET USER WEIGHT CATEGORY
+				
+				var bmi_category = "not defined";
+				
+				if (bmi <= 18.5)
+					{
+					bmi_category = "Underweight";
+					}
+				
+				if (bmi >= 18.6 && bmi <= 26)
+					{
+					bmi_category = "Normal";
+					}
+				
+				if (bmi >= 26 && bmi <= 30)
+					{
+					bmi_category = "Overweight, but not obese";
+					}
+				
+				if (bmi >= 31)
+					{
+					bmi_category = "Obese";
+					} 
+				
+			// CALCULATE IDEAL WEIGHT for height = user height and BMI = 22
+				
+				var ideal_weight = 22 * (h_in_m * h_in_m);
+				
+					// FOR USER FRIENDLINESS : CONVERTING THE WEIGHT INTO USER's CHOICE UNIT
+					
+						var ideal_in_kg = ideal_weight;
+						
+						var ideal_in_lb = ideal_weight * 2.2;
+						
+						var ideal_display;
+						
+						if (weight_unit == "kg") {
+							ideal_display = (Math.round(ideal_in_kg) + " kilograms");
+							}
+							
+						else if (weight_unit == "lb") {
+							ideal_display = (Math.round(ideal_in_lb) + " pounds");
+							}
+						
+						
+				
+				// CALCULATE THE DIFFERENCE IN WEIGHT TO GET VALUE
+				
+				var bmi_diff = w_in_kg - ideal_weight;
+				var do_what = "nd";
+				
+				if (bmi_diff < 0) {
+					do_what = "Gain";
+				} 
+				
+				if (bmi_diff > 0) {
+					do_what = "Lose";
+				}
+				
+					// FOR USER FRIENDLINESS : CONVERTING THE WEIGHT INTO USER's CHOICE UNIT
+					
+						var diff_weight = bmi_diff;
+						
+						if (bmi_diff < 0) {
+							diff_weight = -(bmi_diff);
+							}
+					
+						var diff_in_kg = diff_weight;
+						
+						var diff_in_lb = diff_weight * 2.2;
+						
+						var diff_display;
+						
+						if (weight_unit == "kg") {
+							diff_display = ("<b>" + do_what + "</b> " + Math.round(diff_in_kg) + " kilograms");
+							}
+							
+						else if (weight_unit == "lb") {
+							diff_display = ("<b>" + do_what + "</b> " + Math.round(diff_in_lb) + " pounds");
+							}
+						
+				
+				// CAUSING CHANGE IN UI AND SHOWING THE VALUES ON SCREEN
+				
+					// USER NAME CHECKING
+			
+					name_display = user_name;
+					
+					if (user_name == "" || user_name == null) {
+					name_display = "User"
+					}
+					
+				
+				document.getElementById("calculation_complete").innerHTML = ("Your BMI has been calculated, " + name_display);
+				
+				document.getElementById("bmi").innerHTML = round_bmi;
+				
+				document.getElementById("category").innerHTML = bmi_category;
+				
+				document.getElementById("result").style.height="800px";
+				
+				
+				document.getElementById("ideal").innerHTML = ideal_display;
+				
+				document.getElementById("do_what").innerHTML = diff_display; 
+				
+					// HIDE THAT UNWANTED "FOR A NORMAL BMI YOU MUST" WHEN BMI IS NORMAL
+					
+						if (bmi_category == "Normal") {
+						document.getElementById("you_must").style.display="none";
+						}
+						
+							
+						if (bmi_category == "Normal") {
+						document.getElementById("result").style.height="420px";
+						}
+
+			}
+
+				else { 
+				return false
+				}
+				
+		}
+
+		
+		</script>
+		
+		
+</head>
+
+
+	<body>
+	
+		<header id="head">
+		
+		
+		<h2 id="web_subtitle"> </h2>
+		
+		<h1 id="web_title">BMI Calculator </h1>
+		
+			<!-- Hidden by default, can be seen onhover -->
+		
+			<table align="center" cellspacing="20">
+			
+				<td onclick="show_about();"> ABOUT 	</td>  <td>ALTERNATE STYLE</td>
+			
+			
+			</table> 
+		
+		
+			<!-- about content - visible only when user clicks on ABOUT -->
+			
+			<div id="about"><hr style="border: 1.2px solid black;">
+		
+		<p style="font-size:30px;"> Written by <b>Roshan</b></p>
+		
+		<p style="font-size:19px;"> A small tool that calculates non-age specific BMI. Uses HTML5, CSS3, Javascript and jQuery. <hr style="width:90%;"></hr>
+		
+		Uses Free Icons and Fonts. Other resources include CSS Validators and Generators.</p>
+		
+		<br> <b>This page is open source. Feel free to use and modify!</b> </div>
+		
+		<div id="slide" onclick="hide_about();"> <h3> Hide </h3></div>
+		
+		</header>
+	
+		
+		<section id="form">
+		
+			<h1> Know your BMI</h1>
+			
+			<h2> Fill in the required details then click Submit</h2>
+		
+			<form class="ui" onsubmit="return validate()" action="bmi_index.html"  method="post">
+		
+					<label>Your Name</label>		<input type="text" class="ui" id="name"><br>
+					
+					<label>Enter your weight</label>		<input type="number" step="0.1" min="1" class="ui" name="name" id='w'>		 <select class="ui" id="weight_unit" name="weight_unit"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select> <br>
+					
+					<label>Enter your height</label>	 	<input type="number" step="0.1" min="0" class="ui" name="name" id='h'> 		 <select class="ui" id="height_unit" name="height_unit"><option value="m">Meters (m)</option><option value="cm">Centimeters (cm)</option><option value="ft">Feet (ft)</option></select> <br>
+					
+					 
+
+					<a href="#result"><input type="button" value="Calculate" id="button" name="submit" onclick="return calculate()"> </a>
+			
+
+			</form>
+		
+		</section>
+	
+
+		<section id="result">
+		
+			<h1 id="calculation_complete">Sample Hello World</h1>
+			
+			<div class="results" style="align:justify;">
+			
+				<h2 style="text-align:left; padding-left:20%;">Your BMI is</h2>
+				<h1 id="bmi">N</h1> </div>
+				
+				<div style="text-align:right; padding-right:20%; margin-top:-90px;">
+				<h2>and so</h2>
+				<h1 id="category_you">You are <b><span id="category"></span></b></h1>
+				</div>
+				
+				
+		<div id="you_must">
+				<div class="results" style="align:justify;">
+			
+				<h2 style="text-align:left; padding-left:20%;">The suggested weight for your height is</h2>
+				<h1 id="ideal"></h1> </div>
+				
+				<div  style="text-align:right; padding-right:20%; margin-top:90px;">
+				<h2>For a normal BMI, you must</h2>
+				<h1 id="do_what"></h1>
+				</div>
+				
+		</div>
+		
+			</div>
+			
+
+		
+		</section>
+	
+		<footer>
+		
+		Made by Roshan. Written with HTML, CSS and Javascript. Uses external JQuery script, free online tools and fonts. 
+		
+		</footer>
+	
+	</body>
+
+
+</html>
